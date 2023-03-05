@@ -1,12 +1,12 @@
 import { Router } from 'express';
+import { multerStorage, useStorage } from '../../../Config/multer.config.js';
 import { authCheck } from '../../Middlewares/auth.middleware.js';
 import ExperienceController from './experience.controller.js';
-
-
 
 class ExperienceRouter extends ExperienceController{
   path = '/experiences';
   router = Router();
+  upload = multerStorage(useStorage(''))
 
   constructor() {
     // running Router
@@ -20,7 +20,7 @@ class ExperienceRouter extends ExperienceController{
     this.router.get(`${this.path}/workers/:idWorker`, this.getExperienceByIdWorker);
 
      // Get Experience by id Router
-     this.router.post(`${this.path}/`, authCheck ,this.createExperience);
+     this.router.post(`${this.path}/`, authCheck, this.upload.single('company_photo'),this.createExperience);
 
     // Get Experience by id Router
     this.router.get(`${this.path}/:id`, this.getExperienceById);

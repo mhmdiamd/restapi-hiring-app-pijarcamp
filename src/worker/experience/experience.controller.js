@@ -1,8 +1,8 @@
 // import { clearRedisCache, setOrGetCache } from '../../../Config/redis.config.js';
+import { createAndUpload, auth } from '../../../Config/googleDrive.config.js';
 import HttpException from '../../Exceptions/http.exceptions.js';
 import { successResponse } from '../../Helpers/response.js';
 import ExperienceModel from './experience.model.js';
-
 
 
 class ExperienceController {
@@ -24,8 +24,17 @@ class ExperienceController {
     const {id} = req.user
     const data = {id_worker: id, ...req.body}
     try {
-      await this.#experienceModel.createExperience(data);
-      successResponse(res, 200, `Create portofolio success!`, {message : 'Portofolio success created!'});
+      const {career_start, career_end, ...other} = data
+      if(req.file){
+       // Upload To Drive
+       const uploadToDrive = await createAndUpload(auth, req.file)
+       // Generate photo Url
+       const photoLink = `https://drive.google.com/uc?id=${uploadToDrive.id}`
+       await this.#experienceModel.createExperience({...other, company_photo: photoLink});
+      }else {
+       await this.#experienceModel.createExperience(other);
+      }
+      successResponse(res, 200, `Create Experience success!`, {message : 'Experience success created!'});
     } catch (err) {
       next(new HttpException(err.status, err.message));
     }

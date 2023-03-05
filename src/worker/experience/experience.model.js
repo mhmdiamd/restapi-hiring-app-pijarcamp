@@ -11,6 +11,11 @@ class ExperienceModel {
       where: {
         id_worker: id,
       },
+      orderBy: [
+        {
+          createdAt : 'asc'
+        }
+      ]
     });
 
     if (experiences.length == 0) {
@@ -24,7 +29,8 @@ class ExperienceModel {
       const experience = await this.prisma.experiences.findUnique({
         where : {
           id: id
-        }
+        },
+    
       })
       if(experience){
         return experience

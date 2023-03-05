@@ -94,19 +94,23 @@ class WorkerModel {
         worker_skills: {
           // Seller field is only name and email we need
           select: {
+            id: true,
             skill: true,
           },
         },
-        experiences: true,
+        experiences: {
+          orderBy: [
+            {
+              createdAt: 'desc'
+            }
+          ]
+        },
         portofolios: true
       },
       where: {
         id: id
       }
     });
-
-    console.log(worker)
-
     const {password, ...other} = worker
 
     return other;

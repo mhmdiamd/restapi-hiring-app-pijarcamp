@@ -60,6 +60,12 @@ class WorkerController {
   updateWorkerById = async (req, res, next) => {
     const { id } = req.params;
     try {
+
+      if(req.body.worker_category == 'null' || req.body.worker_category == '') {
+        const {worker_category, ...other} = req.body
+        req.body = other
+      }
+
       // Create file name
       if(req.file) {
         // Get Worker by id

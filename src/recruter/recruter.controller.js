@@ -57,6 +57,7 @@ class RecruterController {
   updateRecruterById = async (req, res, next) => {
     const { id } = req.params;
     try {
+      console.log(req.body)
       //   Create file name
       if(req.files['photo'] || req.files['background_photo']) {
 
@@ -86,14 +87,14 @@ class RecruterController {
 
         }else {
           // Check Recruter have photo before
-          if(photoLink != 'photodefault.jpg' ){
+          if(photoLink != 'photodefault.jpg' && req.files['photo'] ){
             // Get Id photo
             const getPhotoId = photoLink.split('=')[1]
             // Update Photo in drive
             await updatePhoto(auth, req.files['photo'][0], getPhotoId)
           }
 
-          if(backgroundPhotoLink != 'photodefault.jpg'){
+          if(backgroundPhotoLink != 'photodefault.jpg' && req.files['background_photo'] ){
             // Get Id photo
             const getPhotoId = backgroundPhotoLink.split('=')[1]
             // Update Photo in drive
