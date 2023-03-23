@@ -9,10 +9,15 @@ class WorkerAuthModel {
   prisma = new PrismaClient()
 
   // Auth Register
-  register = async ({ name, email, password, phone }) => {
-    const query = `INSERT INTO workers(id, name, email, password, phone) VALUES('${randomUUID()}', '${name}', '${email}', '${password}', '${phone}')`;
-    const workerRegister = await this.#authRepository.query(query);
-    return workerRegister.rows;
+  register = async (data) => {
+    const id = randomUUID()
+    const {iat, exp, ...other} = data
+    const regis = await this.prisma.workers.create({
+      data: {...other, id}
+    })
+
+    return regis
+
   };
 
   // Login

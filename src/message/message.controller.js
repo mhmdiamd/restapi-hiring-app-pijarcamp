@@ -41,10 +41,10 @@ class MessageController {
         // Generate photo Url
         const photoLink = `https://drive.google.com/uc?id=${uploadToDrive.id}`
         // Create data to DB
-        await this.#messageModel.createMessage({photo: photoLink,id_recruter: id, ...req.body});
+        await this.#messageModel.createMessage({photo: photoLink,...req.body,  id_recruter: id, id_category_message: "1"});
       }else {
         // Create data to DB
-        await this.#messageModel.createMessage({id_recruter: id, ...req.body});
+        await this.#messageModel.createMessage({id_recruter: id, ...req.body, id_category_message: "1"});
       }
 
       // Send Response Success
