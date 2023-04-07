@@ -1,4 +1,3 @@
-// import { clearRedisCache, setOrGetCache } from '../../../Config/redis.config.js';
 import { auth, createAndUpload, deletePhoto } from '../../Config/googleDrive.config.js';
 import HttpException from '../Exceptions/http.exceptions.js';
 import { successResponse } from '../Helpers/response.js';
@@ -77,7 +76,6 @@ class MessageController {
       await this.#messageModel.deleteMessageById(id);
       successResponse(res, 200, `Delete Message with ID ${id} success!`, { message: 'Message Deleted!' });
 
-      // await clearRedisCache(`${this.#ENDPOINT}/${id}`);
     } catch (err) {
       next(new HttpException(err.status, err.message));
     }
@@ -99,11 +97,8 @@ class MessageController {
       }
 
       await this.#messageModel.updateMessageById(id, data);
-      // await setOrGetCache(`${this.#ENDPOINT}/${id}`, async () => {
-      //   return Message;
-      // });
+  
       successResponse(res, 200, `Update Message with ID ${id} success!`, { message: 'Message Updated!' });
-      // await clearRedisCache(`${this.#ENDPOINT}/${id}`);
     } catch (err) {
       next(new HttpException(err.status, err.message));
     }

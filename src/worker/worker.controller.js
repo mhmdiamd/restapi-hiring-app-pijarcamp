@@ -1,4 +1,3 @@
-// import { clearRedisCache, setOrGetCache } from '../../Config/redis.config.js';
 import HttpException from '../Exceptions/http.exceptions.js';
 import { successResponse } from '../Helpers/response.js';
 import WorkerModel from './worker.model.js';
@@ -32,9 +31,6 @@ class WorkerController {
   getWorkerById = async (req, res, next) => {
     const { id } = req.params;
     try {
-      // const worker = await setOrGetCache(`${this.ENDPOINT}/${id}`, async () => {
-      //   return await this.#workerModel.getWorkerById(id);
-      // });
 
       const worker = await this.#workerModel.getWorkerById(id);
       successResponse(res, 200, `Get Worker with ID ${id} success!`, worker);
@@ -50,7 +46,6 @@ class WorkerController {
     try {
       await this.#workerModel.deleteWorkerById(id);
       successResponse(res, 200, 'Worker success deleted!', { mesage: 'Worker deleted!' });
-      // await clearRedisCache(`${this.ENDPOINT}/${id}`);
     } catch (err) {
       next(new HttpException(err.status, err.message));
     }
@@ -88,10 +83,6 @@ class WorkerController {
          await this.#workerModel.updateWorkerById(id, req.body);
       }
 
-      // await clearRedisCache(`${this.ENDPOINT}/${id}`);
-      // await setOrGetCache(`${this.ENDPOINT}/${id}`, async () => {
-      //   return worker;
-      // });
       successResponse(res, 200, `Success updated worker with id ${id}`, { message: `worker Updated!` });
     } catch (err) {
       next(new HttpException(err.status, err.message));
