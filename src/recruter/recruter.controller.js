@@ -1,4 +1,3 @@
-// import { clearRedisCache, setOrGetCache } from '../../Config/redis.config.js';
 import { auth, createAndUpload, updatePhoto } from '../../Config/googleDrive.config.js';
 import HttpException from '../Exceptions/http.exceptions.js';
 import { successResponse } from '../Helpers/response.js';
@@ -30,9 +29,6 @@ class RecruterController {
   getRecruterById = async (req, res, next) => {
     const { id } = req.params;
     try {
-      // const recruter = await setOrGetCache(`${this.#ENDPOINT}/${id}`, async () => {
-      //   return await this.#recruterModel.getRecruterById(id);
-      // });
 
       const recruter = await this.#recruterModel.getRecruterById(id);
       successResponse(res, 200, `Get recruter with ID ${id} success!`, recruter);
@@ -47,7 +43,6 @@ class RecruterController {
     try {
       await this.#recruterModel.deleteRecruterById(id);
       successResponse(res, 200, `Delete recruter with ID ${id} success!`, { message: 'recruter Deleted!' });
-      // await clearRedisCache(`${this.#ENDPOINT}/${id}`);
     } catch (err) {
       next(new HttpException(err.status, err.message));
     }
@@ -107,10 +102,6 @@ class RecruterController {
          await this.#recruterModel.updateRecruterById(id, req.body);
       }
 
-      // await clearRedisCache(`${this.ENDPOINT}/${id}`);
-      // await setOrGetCache(`${this.ENDPOINT}/${id}`, async () => {
-      //   return recruter;
-      // });
       successResponse(res, 200, `Success updated recruter with id ${id}`, { message: `recruter Updated!` });
     } catch (err) {
       next(new HttpException(err.status, err.message));

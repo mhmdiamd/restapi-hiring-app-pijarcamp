@@ -1,5 +1,4 @@
 import { auth, createAndUpload, deletePhoto, updatePhoto } from '../../../Config/googleDrive.config.js';
-// import { clearRedisCache, setOrGetCache } from '../../../Config/redis.config.js';
 import HttpException from '../../Exceptions/http.exceptions.js';
 import { successResponse } from '../../Helpers/response.js';
 import PortofolioModel from './portofolio.model.js';
@@ -61,7 +60,6 @@ class PortofolioController {
       await this.#portofolioModel.deletePortofolioById(id);
       successResponse(res, 200, `Delete Portofolio with ID ${id} success!`, { message: 'Portofolio Deleted!' });
 
-      // await clearRedisCache(`${this.#ENDPOINT}/${id}`);
     } catch (err) {
       next(new HttpException(err.status, err.message));
     }
@@ -83,11 +81,7 @@ class PortofolioController {
       }
 
       await this.#portofolioModel.updatePortofolioById(id, data);
-      // await setOrGetCache(`${this.#ENDPOINT}/${id}`, async () => {
-      //   return recruter;
-      // });
       successResponse(res, 200, `Update Recruter with ID ${id} success!`, { message: 'Recruter Updated!' });
-      // await clearRedisCache(`${this.#ENDPOINT}/${id}`);
     } catch (err) {
       next(new HttpException(err.status, err.message));
     }

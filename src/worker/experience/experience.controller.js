@@ -1,4 +1,3 @@
-// import { clearRedisCache, setOrGetCache } from '../../../Config/redis.config.js';
 import { createAndUpload, auth } from '../../../Config/googleDrive.config.js';
 import HttpException from '../../Exceptions/http.exceptions.js';
 import { successResponse } from '../../Helpers/response.js';
@@ -44,9 +43,6 @@ class ExperienceController {
   getExperienceById = async (req, res, next) => {
     const { id } = req.params;
     try {
-      // const recruter = await setOrGetCache(`${this.#ENDPOINT}/${id}`, async () => {
-      //   return await this.#experienceModel.getExperienceById(id);
-      // });
 
       const experience = await this.#experienceModel.getExperienceById(id);
       successResponse(res, 200, `Get Experience with ID ${id} success!`, experience);
@@ -61,7 +57,6 @@ class ExperienceController {
     try {
       await this.#experienceModel.deleteExperienceById(id);
       successResponse(res, 200, `Delete Experience with ID ${id} success!`, { message: 'Experience Deleted!' });
-      // await clearRedisCache(`${this.#ENDPOINT}/${id}`);
     } catch (err) {
       next(new HttpException(err.status, err.message));
     }
@@ -73,11 +68,8 @@ class ExperienceController {
     const data = req.body;
     try {
       await this.#experienceModel.updateExperienceById(id, data);
-      // await setOrGetCache(`${this.#ENDPOINT}/${id}`, async () => {
-      //   return experience;
-      // });
+
       successResponse(res, 200, `Update Experience with ID ${id} success!`, { message: 'Experience Updated!' });
-      // await clearRedisCache(`${this.#ENDPOINT}/${id}`);
     } catch (err) {
       next(new HttpException(err.status, err.message));
     }
