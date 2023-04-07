@@ -1,0 +1,125 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model workers {
+  id String   @db.VarChar(100) @unique
+  name String   @db.VarChar(100)
+  email String   @db.VarChar(100) @unique
+  password String   @db.VarChar(255)
+  job_desk String?   @db.VarChar(100)
+  workplace String?   @db.VarChar(100) 
+  description String?
+  role String   @db.VarChar(100) @default("worker")
+  phone String   @db.VarChar(20) 
+  address String?
+  photo String   @db.VarChar(100) @default("photodefault.jpg")
+  worker_category worker_category?
+  active_email String?   @db.VarChar(100) 
+  instagram String?   @db.VarChar(100) 
+  github String?   @db.VarChar(100) 
+  gitlab String?   @db.VarChar(100)  
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime?    @updatedAt
+  worker_skills worker_skills[]
+  portofolios portofolios[]
+  experiences experiences[]
+  messages messages[]
+}
+
+model recruters {
+  id String   @db.VarChar(100) @unique
+  name String   @db.VarChar(100)
+  email String   @db.VarChar(100) @unique
+  password String   @db.VarChar(255)
+  company_name String   @db.VarChar(100)
+  company_field String?   @db.VarChar(100)
+  workplace String?   @db.VarChar(100)
+  position String   @db.VarChar(100) 
+  description String?
+  role String   @db.VarChar(100) @default("recruter")
+  phone String   @db.VarChar(20) 
+  address String?
+  photo String   @db.VarChar(100) @default("photodefault.jpg")
+  background_photo String?   @db.VarChar(100) @default("photodefault.jpg")
+  instagram String?   @db.VarChar(100)
+  linkedin String?  @db.VarChar(100)
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime?    @updatedAt
+  messages messages[]
+}
+
+
+model worker_skills {
+  id String   @db.VarChar(255) @unique
+  id_worker String   @db.VarChar(255) 
+  worker     workers @relation(fields: [id_worker], references: [id],  onDelete: Cascade)
+  skill     String   @db.VarChar(100) 
+}
+
+model category_messages {
+  id String   @db.VarChar(255) @unique
+  name String @db.VarChar(100) @unique
+  messages messages[]
+}
+
+model messages {
+  id String   @db.VarChar(100) @unique
+  id_worker String @db.VarChar(100)
+  worker     workers   @relation(fields: [id_worker], references: [id])
+  id_recruter String @db.VarChar(100)
+  recruter     recruters   @relation(fields: [id_recruter], references: [id])
+  purpose String   @db.VarChar(255)
+  recruter_name String   @db.VarChar(100)
+  email String   @db.VarChar(100) 
+  phone String   @db.VarChar(20) 
+  id_category_message String @db.VarChar(100)
+  category_message    category_messages   @relation(fields: [id_category_message], references: [id])
+  photo String   @db.VarChar(100) @default("photodefault.jpg")
+  read_status Int   @default(1)
+  description String
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime?    @updatedAt
+}
+
+
+enum worker_category {
+  freelance
+  fulltime
+}
+
+model portofolios {
+  id String   @db.VarChar(100) @unique
+  id_worker String @db.VarChar(100)
+  worker workers   @relation(fields: [id_worker], references: [id], onDelete: Cascade)
+  application_name String   @db.VarChar(100)
+  link_repository String   @db.VarChar(100)
+  type type_app
+  photo String   @db.VarChar(100) 
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime?    @updatedAt
+}
+
+model experiences {
+  id String   @db.VarChar(100) @unique
+  id_worker String @db.VarChar(100)
+  worker     workers   @relation(fields: [id_worker], references: [id], onDelete: Cascade)
+  company_name String   @db.VarChar(100)
+  company_photo String?   @db.VarChar(100)
+  position String   @db.VarChar(100) 
+  career_start DateTime?   @db.Date
+  career_end DateTime?   @db.Date
+  description String
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime?    @updatedAt
+}
+
+enum type_app {
+  mobile
+  web
+}

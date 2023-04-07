@@ -26,18 +26,17 @@ class App {
     this.#initialiseRouters(routers);
     this.#initialiseErrorHandling();
   }
-// hallo ilham ini dari kak zaki
-  // Initialise Middleware
+
   #initialiseMiddleware() {
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(cors({origin: process.env.ORIGIN_DOMAIN, credentials: true}));
-
     this.app.use(helmet());
     this.app.use(morgan('dev'));
     this.app.use(xss());
     this.app.use(cookieParser());    
   }
+
   #initialiseErrorHandling() {
     this.app.use(errorMiddleware);
     this.app.use((req, res, next) => {
@@ -47,7 +46,7 @@ class App {
     });
   }
 
-  // Initialise Controllers
+  // Initialise Roter
   #initialiseRouters(routers) {
     routers.forEach((router) => {
       this.app.use('/api/v1', router.router);
@@ -56,25 +55,25 @@ class App {
 
   // Lister Server
   listen() {
-    if (cluster.isPrimary) {
-      for (let i = 0; i < os.cpus().length; i++) {
-        cluster.fork();
-      }
+    // if (cluster.isPrimary) {
+    //   for (let i = 0; i < os.cpus().length; i++) {
+    //     cluster.fork();
+    //   }
 
-      cluster.addListener('exit', (worker, code, signal) => {
-        console.log(`Worker with id ${worker.id} is exit`);
-        cluster.fork();
-      });
-    }
+    //   cluster.addListener('exit', (worker, code, signal) => {
+    //     console.log(`Worker with id ${worker.id} is exit`);
+    //     cluster.fork();
+    //   });
+    // }
 
-    if (cluster.isWorker) {
-      this.app.listen(this.port, () => {
-        console.log(`Server Running with worker id ${process.pid} on port ${this.port} with`);
-      });
-    }
-    // this.app.listen(this.port, () => {
-    //   console.log(`Server Running with worker id ${process.pid} on port ${this.port}`);
-    // });
+    // if (cluster.isWorker) {
+    //   this.app.listen(this.port, () => {
+    //     console.log(`Server Running with worker id ${process.pid} on port ${this.port} with`);
+    //   });
+    // }
+    this.app.listen(this.port, () => {
+      console.log(`Server Running on port ${this.port}`);
+    });
   }
 }
 
