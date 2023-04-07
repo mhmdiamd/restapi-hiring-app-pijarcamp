@@ -3,4 +3,4 @@
 /test
 credentials.json
 /query.sql
-/prisma
+/prisma/migrations
