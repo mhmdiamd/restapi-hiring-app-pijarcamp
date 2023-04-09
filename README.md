@@ -120,9 +120,7 @@ npm install
 - <a href="#setup-env-example">Setup .env</a>
 - Starting application
 
-```npm run start:dev
-  <!-- Run Linter -->
-  npm run lint
+``` npm run start:dev
 ```
 
 ### Setup .env example
