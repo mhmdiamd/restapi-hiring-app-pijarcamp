@@ -24,7 +24,6 @@
   - [Requirements](#requirements)
   - [Installation](#installation)
   - [Setup .env example](#setup-env-example)
-- [Rest Api](#rest-api)
 - [Contributing](#contributing)
 - [Related Project](#related-project)
 - [Contact](#contact)
