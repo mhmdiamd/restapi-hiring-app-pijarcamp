@@ -117,8 +117,9 @@ npm install
 ```
 
 - Starting application
--
-``` npm run start:dev
+
+```
+ npm run start:dev
 ```
 
 ### Setup .env example
