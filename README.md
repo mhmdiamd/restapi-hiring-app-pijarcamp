@@ -24,7 +24,6 @@
   - [Requirements](#requirements)
   - [Installation](#installation)
   - [Setup .env example](#setup-env-example)
-- [Rest Api](#rest-api)
 - [Contributing](#contributing)
 - [Related Project](#related-project)
 - [Contact](#contact)
@@ -162,7 +161,7 @@ DRIVE_CLIENT_SECRET
 
 ## Endpoint List
 
-[![Run in Postman](https://run.pstmn.io/button.svg)] (https://documenter.getpostman.com/view/23097943/2s93XyUiLm)
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://documenter.getpostman.com/view/23097943/2s93XyUiLm)
 <!-- (https://documenter.getpostman.com/view/23292228/2s93RUvsMo) -->
 
 <!-- CONTRIBUTING -->
