@@ -119,7 +119,7 @@ npm install
 
 - <a href="#setup-env-example">Setup .env</a>
 - Starting application
-
+-
 ``` npm run start:dev
 ```
 
@@ -162,7 +162,7 @@ DRIVE_CLIENT_SECRET
 
 ## Endpoint List
 
-[![Run in Postman](https://run.pstmn.io/button.svg)]
+[![Run in Postman](https://run.pstmn.io/button.svg)] (https://documenter.getpostman.com/view/23097943/2s93XyUiLm)
 <!-- (https://documenter.getpostman.com/view/23292228/2s93RUvsMo) -->
 
 <!-- CONTRIBUTING -->
