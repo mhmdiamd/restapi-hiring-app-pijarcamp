@@ -116,7 +116,6 @@ cd restapi-hiring-app-pijarcamp
 npm install
 ```
 
-- <a href="#setup-env-example">Setup .env</a>
 - Starting application
 -
 ``` npm run start:dev
