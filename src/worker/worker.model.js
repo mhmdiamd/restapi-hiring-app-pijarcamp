@@ -1,9 +1,7 @@
-import { dbRepo } from '../../Config/db.config.js';
 import HttpException from '../Exceptions/http.exceptions.js';
 import { PrismaClient } from '@prisma/client';
 
 class WorkerModel {
-  #DB = dbRepo;
   prisma = new PrismaClient()
 
   // Count Product
@@ -116,17 +114,9 @@ class WorkerModel {
     return other;
   };
 
-  // Delete User
-  deleteWorkerById = async (id) => {
-    await this.getWorkerById(id);
-    const query = `DELETE FROM workers WHERE id = '${id}'`;
-    const deletedUsers = await this.#DB.query(query);
-
-    return deletedUsers.rows;
-  };
-
   // Update workers by Id
   updateWorkerById = async (id, data) => {
+    console.log(data)
     const worker = await this.prisma.workers.update({
       data: data,
       where : {

@@ -57,8 +57,7 @@ class WorkerController {
     try {
 
       if(req.body.worker_category == 'null' || req.body.worker_category == '') {
-        const {worker_category, ...other} = req.body
-        req.body = other
+        req.body.worker_category = 'fulltime'
       }
 
       // Create file name

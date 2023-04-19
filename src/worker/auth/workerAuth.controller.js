@@ -2,7 +2,6 @@ import { sendEmailActivation } from '../../../Config/nodemailer.config.js';
 import WorkerAuthModel from './workerAuth.model.js';
 import HttpException from '../../Exceptions/http.exceptions.js';
 import { generateRefreshToken, generateToken } from '../../Helpers/token.js';
-import { createRefreshToken } from '../../token/token.service.js';
 import { successResponse } from '../../Helpers/response.js';
 
 class WorkerAuthController {

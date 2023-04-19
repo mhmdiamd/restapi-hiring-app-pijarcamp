@@ -3,7 +3,6 @@ import RecruterAuthModel from './recruterAuth.model.js';
 import HttpException from '../../Exceptions/http.exceptions.js';
 import { generateRefreshToken, generateToken } from '../../Helpers/token.js';
 import { successResponse } from '../../Helpers/response.js';
-import { createRefreshToken } from '../../token/token.service.js';
 
 class RecruterAuthController {
   #recruterAuthModel = new RecruterAuthModel();

@@ -87,7 +87,6 @@ model messages {
   updatedAt  DateTime?    @updatedAt
 }
 
-
 enum worker_category {
   freelance
   fulltime

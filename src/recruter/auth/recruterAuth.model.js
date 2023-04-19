@@ -1,18 +1,20 @@
-import { dbRepo } from '../../../Config/db.config.js';
 import bcrypt from 'bcryptjs';
 import HttpException from '../../Exceptions/http.exceptions.js';
 import { randomUUID } from 'crypto';
 import { PrismaClient } from '@prisma/client';
 
 class RecruterAuthModel {
-  #DB = dbRepo;
   prisma = new PrismaClient()
 
   // Auth Register
-  register = async ({ name, email, password, company_name, position, phone }) => {
-    const query = `INSERT INTO recruters(id, name, email, company_name, password, position, phone) VALUES('${randomUUID()}', '${name}', '${email}', '${company_name}','${password}', '${position}', '${phone}')`;
-    const recruterRegister = await this.#DB.query(query);
-    return recruterRegister.rows;
+  register = async (data) => {
+    const id = randomUUID()
+    const {iat, exp, ...other} = data
+    const regis = await this.prisma.recruters.create({
+      data: {...other, id}
+    })
+
+    return regis
   };
 
   // Login

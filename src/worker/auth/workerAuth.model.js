@@ -1,11 +1,9 @@
-import { dbRepo } from '../../../Config/db.config.js';
 import bcrypt from 'bcryptjs';
 import { randomUUID } from 'crypto';
 import HttpException from '../../Exceptions/http.exceptions.js';
 import { PrismaClient } from '@prisma/client';
 
 class WorkerAuthModel {
-  #authRepository = dbRepo;
   prisma = new PrismaClient()
 
   // Auth Register

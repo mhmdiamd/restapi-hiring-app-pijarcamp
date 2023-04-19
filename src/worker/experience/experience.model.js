@@ -1,4 +1,3 @@
-import { dbRepo } from '../../../Config/db.config.js';
 import { PrismaClient } from '@prisma/client';
 import HttpException from '../../Exceptions/http.exceptions.js';
 import { randomUUID } from 'crypto';

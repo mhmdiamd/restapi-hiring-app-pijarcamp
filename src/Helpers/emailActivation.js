@@ -35,6 +35,7 @@ export const recruterEmailActivation = async (req, res, next) => {
   const { token } = req.params;
   jwt.verify(token, process.env.EMAIL_ACTIVATION_TOKEN, async (err, user) => {
     if (err) {
+      console.log(err)
       return next(new HttpException(500, err.message));
     }
     try {
@@ -42,6 +43,7 @@ export const recruterEmailActivation = async (req, res, next) => {
       var password = bcrypt.hashSync(user.password, salt);
       user = { ...user, password };
 
+      console.log(user)
       await recruterAuthModel.register(user);
 
       successResponse(res, 201, 'Register success!', {});
@@ -49,7 +51,7 @@ export const recruterEmailActivation = async (req, res, next) => {
       if (err.message.includes('duplicate')) {
         next(new HttpException(err.status, 'Email has already taken!'));
       }
-
+      console.log(err)
       next(new HttpException(err.status, err.message));
     }
   });
