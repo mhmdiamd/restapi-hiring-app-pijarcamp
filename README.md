@@ -3,11 +3,11 @@
 <div align="center">
 <img height="150" src="./documentation/logo.png" alt="YuGawe" border="0"/>
 </div>
-  <h3 align="center">Backend YuGawe</h3>
+  <h3 align="center">Backend Alan Resto</h3>
   <p align="center">
-    <a href="https://github.com/mhmdiamd/restapi-hiring-app-pijarcamp"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/mhmdiamd/milhamdarmawan-webdeveloper"><strong>Explore the docs »</strong></a>
     <br />
-    <a href="https://restapi-hiring-app-pijarcamp-production.up.railway.app/api/v1/">View Demo</a>
+    <a href="">View Demo</a>
     ·
   </p>
 </p>
@@ -24,25 +24,15 @@
   - [Requirements](#requirements)
   - [Installation](#installation)
   - [Setup .env example](#setup-env-example)
-- [Contributing](#contributing)
 - [Related Project](#related-project)
 - [Contact](#contact)
 
-<!-- ABOUT THE PROJECT -->
-
-## About The Project
-
-YuGawe is a jobseeker website project that aims to assist Software Developers in finding jobs that match their skills. The name YuGawe comes from the Javanese language, meaning "Let's Work".
-
-On this website, job seekers can create a profile, upload their experience and portfolio. YuGawe also offers a feature to connect job seekers with companies that are looking for candidates with the required skills.
-
-One of the outstanding features of YuGawe is the ability to identify the skills and interests of job seekers based on their abilities. With this information, recruiters can directly connect through the hire feature.
 
 ### Built With
 
 - [Node.js](https://nodejs.org/en/)
 - [Express.js](https://expressjs.com/)
-- [JSON Web Tokens](https://jwt.io/)
+- [Google Cloud Platform - Google Drive Api](https://cloud.google.com/)
 - [Prisma ORM](https://prisma.io/)
 - and other
 
@@ -67,7 +57,6 @@ This is an example of how to list things you need to use the software and how to
 | [Dotenv]        | npm i dotenv        |
 | [CORS]          | npm i cors          |
 | [Eslint]        | npm i eslint        |
-| [Joi]           | npm i joi           |
 | [jsonwebtoken]  | npm i jsonwebtoken  |
 | [cookie-parser] | npm i cookie-parser |
 | [googleapis]    | npm i googleapis    |

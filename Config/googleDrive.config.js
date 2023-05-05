@@ -1,7 +1,7 @@
 import { google } from 'googleapis';
 import fs from 'fs';
 import dotenv from 'dotenv'
-dotenv.config({ path:'../.env' })
+dotenv.config()
 
 const SCOPES = [
   'https://www.googleapis.com/auth/drive',
@@ -10,41 +10,6 @@ const SCOPES = [
   ' https://www.googleapis.com/auth/drive.scripts',
   'https://www.googleapis.com/auth/drive.metadata',
 ];
-
-// export async function unlockFolder() {
-//   try {
-//     const zip = new AdmZip('./credentials.zip');
-//     console.log('tes');
-//     zip.getEntries().forEach((entry) => {
-//       entry.password = 'ilhamgoogledrive';
-//     });
-//     zip.extractAllTo('/', true);
-//     console.log('The ZIP file has been extracted successfully.');
-//     return true;
-//   } catch (err) {
-//     console.error(err);
-//     return false;
-//   }
-// }
-
-// fs.stat(
-//   './credentials.json',
-//   (err,
-//   (stats) => {
-//     if (err.code === 'ENOENT') {
-//       console.error('The file does not exist.');
-//       if (unlockFolder()) {
-//         return {
-//           keyFile: './credentials.json',
-//           scopes: SCOPES,
-//         };
-//       }
-//     } else {
-//       console.error(err);
-//       return err;
-//     }
-//   })
-// );
 
 export const auth = new google.auth.GoogleAuth({
   credentials: {
@@ -63,6 +28,7 @@ export const auth = new google.auth.GoogleAuth({
 });
 
 export async function createAndUpload(auth, photo) {
+  console.log(photo)
   const driveService = google.drive({
     version: 'v3',
     auth: auth,
@@ -117,32 +83,3 @@ export async function updatePhoto(auth, photo, idPhoto) {
     resolve(response);
   });
 }
-
-// createAndUpload(auth)
-//   .then((res) => console.log(res))
-//   .catch((err) => console.log(err));
-
-// updatePhoto(auth)
-//   .then((res) => {
-//     console.log('Success updated!');
-//     console.log(res.data.id);
-//   })
-//   .catch((err) => {
-//     console.log(err);
-//     console.log('err');
-//   });
-
-// deletePhoto(auth)
-//   .then((res) => {
-//     console.log(res.data.id);
-//   })
-//   .catch((err) => console.log(err));
-
-// const app = express();
-// app.use(express.json());
-
-// app.get('/', (req, res) => {});
-
-// app.listen(3000, () => {
-//   console.log(`Google drive was running!`);
-// });

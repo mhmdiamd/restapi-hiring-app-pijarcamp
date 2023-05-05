@@ -4,19 +4,9 @@ import cors from 'cors';
 import xss from 'xss-clean';
 import cookieParser from 'cookie-parser';
 import morgan from 'morgan';
-import cluster from 'cluster';
-import os from 'os';
-import process from 'process';
-import path from 'path';
-import multer from 'multer';
-import { fileURLToPath } from 'url';
-import { config } from 'dotenv';
 import errorMiddleware from './src/Middlewares/error.middleware.js'
 
 class App {
-  filename = fileURLToPath(import.meta.url);
-  dirname = path.dirname(this.filename);
-  upload = multer();
 
   constructor(routers, port) {
     this.app = express();
@@ -55,22 +45,6 @@ class App {
 
   // Lister Server
   listen() {
-    // if (cluster.isPrimary) {
-    //   for (let i = 0; i < os.cpus().length; i++) {
-    //     cluster.fork();
-    //   }
-
-    //   cluster.addListener('exit', (worker, code, signal) => {
-    //     console.log(`Worker with id ${worker.id} is exit`);
-    //     cluster.fork();
-    //   });
-    // }
-
-    // if (cluster.isWorker) {
-    //   this.app.listen(this.port, () => {
-    //     console.log(`Server Running with worker id ${process.pid} on port ${this.port} with`);
-    //   });
-    // }
     this.app.listen(this.port, () => {
       console.log(`Server Running on port ${this.port}`);
     });
