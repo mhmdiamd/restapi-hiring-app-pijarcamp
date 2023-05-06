@@ -1,5 +1,5 @@
-import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken'
 import WorkerAuthModel from '../worker/auth/workerAuth.model.js';
 import RecruterAuthModel from './../recruter/auth/recruterAuth.model.js';
 import HttpException from '../Exceptions/http.exceptions.js';
