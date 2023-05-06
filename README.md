@@ -98,10 +98,10 @@ cd milhamdarmawan-webdeveloper-be
 npm install
 ```
 
-- <a href="#setup-env-example">Setup .env</a>
 - Starting application
--
-``` npm run start:dev
+
+```
+ npm run start:dev
 ```
 
 ### Setup .env example
