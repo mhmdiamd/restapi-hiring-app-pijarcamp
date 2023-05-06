@@ -2,7 +2,7 @@ import multer from 'multer';
 import path from 'path';
 import HttpException from '../src/Exceptions/http.exceptions.js';
 
-export const useStorage = (entity) => {
+export const useStorage = () => {
   return multer.diskStorage({
     // destination: (req, file, cb) => {
     //   cb(null, `Public/Images/${entity}`);
@@ -13,8 +13,6 @@ export const useStorage = (entity) => {
     },
   });
 };
-
-export const dataUri = (req) => dUri.format(path.extname(req.file.originalname).toString(), req.file.buffer);
 
 export const multerStorage = (storage) => {
   const maxSize = 2 * 1000 * 1000;
